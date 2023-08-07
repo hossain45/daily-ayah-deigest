@@ -2,12 +2,21 @@
 let verse = document.getElementById("verse");
 let verseNumber = document.getElementById("verse-number");
 let translation = document.getElementById("translation");
+let loadingText = document.getElementById("loading-text");
+let audioElement = document.getElementById("audioElement");
 // let twitterBtn = document.getElementById("twitter-btn");
 let generateBtn = document.getElementById("generate-btn");
 let playBtn = document.getElementById("play-btn");
 
 // Fetch the data from the API
 let getAyahArabic = () => {
+    //hiding loading text
+    verse.style.display = "none";
+    translation.style.display = "none";
+    verseNumber.style.display = "none";
+    loadingText.style.display = "block";
+
+    setTimeout(() => {
     //getting random verse
     let randomChapter = Math.floor(Math.random() * 114) + 1;
     let randomVerse = Math.floor(Math.random() * 286) + 1; // The highest verse count in any chapter is 286
@@ -37,30 +46,37 @@ let getAyahArabic = () => {
         .then(response => response.json())
         .then(data => {
             const translationText = data.data.text;
-            translation.innerHTML = `${translationText}`;    
+            translation.innerHTML = `${translationText}`;   
+            // Hide the loading message and show the verse, translation, and play button
+            loadingText.style.display = "none";
+            verse.style.display = "block";
+            translation.style.display = "block";
+            verseNumber.style.display = "block"; 
         })
         .catch(error => {
             console.log('Error:', error);
         });
     //setting audio endpoints api
     let audioUrl = `https://api.alquran.cloud/v1/ayah/${randomChapter}:${randomVerse}/ar.alafasy`;
+    //removing previous audio url
+    audioElement.removeAttribute("src");
 
     fetch(audioUrl)
         .then(response => response.json())
         .then(data => {
             const playAudio = data.data.audio;
             playBtn.addEventListener('click', () => {
-                // Create an audio element and play the audio
-                const audioElement = new Audio(playAudio);
+                //settinng audio url to html audio element 
+                audioElement.setAttribute("src", playAudio);
                 audioElement.play();
             });
-            // playBtn.innerHTML = `${playAudio}`;    
         })
         .catch(error => {
             console.log('Error:', error);
         });
+    }, 500);
 }
+//calling functions 
 getAyahArabic();
-
 generateBtn.addEventListener('click', getAyahArabic);
-//set a timeout... work on it
+//set a timeout... work on it--- keeps refreshing need to work on it

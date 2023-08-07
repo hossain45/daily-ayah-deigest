@@ -33,19 +33,25 @@
 </head>    
 <body class="flex items-center h-screen bg-gray-100">
     <div class=" bg-white card w-2/3 shadow-xl  mx-auto">
-        <div class="card-body flex flex-col justify-center items-center gap-2">
+        <div class="card-body flex flex-col justify-center items-center gap-2 text-center">
             <!-- texts -->
           <h2 id="verse" class="card-title">            
           </h2>          
           <p id="translation" class="card-title py-5">
           </p>
+          <p id="loading-text" class="card-title py-5">
+            কেবল ধৈর্যশীলদেরকেই তাদের প্রতিদান পূর্ণরূপে দেয়া হবে কোন হিসাব ছাড়াই! [৩৯:১০]
+          </p>
           <p id="verse-number" class="font-secondaryFont text-sm font-normal pb-10">
           </p>
+          <audio id="audioElement"></audio>
           <!-- buttons -->
           <div class="card-actions font-secondaryFont">
             <button id="twitter-btn" class="btn btn-ghost text-blue-700 text-xl normal-case font-medium"><i class="fa-brands fa-twitter"></i> Twitter</button>
-            <button id="generate-btn" class="btn btn-primary text-xl normal-case font-medium"><i class="fa-solid fa-shuffle"></i>Genrate</button>
-            <button id="play-btn" class="btn btn-ghost text-xl normal-case font-medium"><i class="fa-solid fa-play"></i>Play</button>
+            <button id="generate-btn" type="button" class="btn btn-primary text-xl normal-case font-medium"><i class="fa-solid fa-shuffle"></i>Generate</button>
+            <button id="play-btn" class="btn btn-ghost text-xl normal-case font-medium"><i class="fa-solid fa-play"></i>
+                Play
+            </button>
           </div>      
         </div>
     </div>
