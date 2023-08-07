@@ -31,8 +31,8 @@
     }
     </script>
 </head>    
-<body class="flex items-center h-screen bg-gray-100">
-    <div id="card" class=" bg-white card w-2/3 shadow-xl  mx-auto">
+<body class="flex flex-col items-center h-screen bg-gray-100">
+    <div id="card" class="my-auto bg-white card w-2/3 shadow-xl  mx-auto">
         <div class="card-body flex flex-col justify-center items-center gap-2 text-center">
             <!-- texts -->
           <h2 id="verse" class="card-title">            
@@ -46,7 +46,7 @@
           </p>
           <audio id="audioElement"></audio>
           <!-- buttons -->
-          <div class="card-actions font-secondaryFont">
+          <div class="card-actions font-secondaryFont flex flex-col justify-center items-center sm:flex-row">
             <button id="twitter-btn" class="btn btn-ghost text-blue-700 text-xl normal-case font-medium"><i class="fa-brands fa-twitter"></i> Tweet</button>
             <button id="generate-btn" type="button" class="btn btn-primary text-xl normal-case font-medium"><i class="fa-solid fa-shuffle"></i>Generate</button>
             <button id="play-btn" class="btn btn-ghost text-xl normal-case font-medium"><i class="fa-solid fa-play"></i>
@@ -55,6 +55,26 @@
           </div>      
         </div>
     </div>
+    <footer class="footer footer-center py-4 px-2 mt-5 bg-gray-400 text-base-content w-full h-auto text-center">
+        <div>
+          <p class="font-secondaryFont font-medium text-xl">Copyright © 2023 - All right reserved by <!-- You can open the modal using ID.showModal() method -->
+            <button class="btn btn-ghost px-0 py-0 font-secondaryFont font-medium text-xl underline" onclick="my_modal_3.showModal()">Hossain45</button>
+            <dialog id="my_modal_3" class="modal">
+              <form method="dialog" class="modal-box">
+                <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                <h3 class="font-bold text-2xl font-primaryFont">Hello!</h3>
+                <p class="py-4">Let's CONNECT!</p>
+                <div class="grid grid-flow-col gap-3 justify-center">
+					<a href="https://twitter.com/AtharHm" target="_blank" ><i class="fa-brands fa-twitter text-2xl"></i></a> 
+					<a href="https://www.linkedin.com/in/hm-athar/" target="_blank" ><i class="fa-brands fa-linkedin text-2xl"></i></a>
+					<a href="https://github.com/hossain45" target="_blank" ><i class="fa-brands fa-github text-2xl"></i></a>
+				</div>
+              </form>
+            </dialog>
+
+          </p>
+        </div>
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>                                                         
