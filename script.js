@@ -4,7 +4,7 @@ let verseNumber = document.getElementById("verse-number");
 let translation = document.getElementById("translation");
 let loadingText = document.getElementById("loading-text");
 let audioElement = document.getElementById("audioElement");
-// let twitterBtn = document.getElementById("twitter-btn");
+let twitterBtn = document.getElementById("twitter-btn");
 let generateBtn = document.getElementById("generate-btn");
 let playBtn = document.getElementById("play-btn");
 
@@ -29,10 +29,16 @@ let getAyahArabic = () => {
         .then(data => {
             const verseText = data.data.text;
             if(verseText !== undefined) {
+                // Hide the loading message and show the verse, translation, and play button
+                loadingText.style.display = "none";
+                verse.style.display = "block";
+                translation.style.display = "block";
+                verseNumber.style.display = "block"; 
+                
                 verse.innerHTML = `${verseText}`;
-                verseNumber.innerHTML = `Chapter ${randomChapter}, Verse ${randomVerse}`
+                verseNumber.innerHTML = `Chapter ${randomChapter}, Verse ${randomVerse}`            
             } else {
-                setTimeout(getAyahArabic, 500); // Adjust the delay as needed (e.g., 500ms)
+                setTimeout(getAyahArabic, 100); // Adjust the delay as needed (e.g., 500ms)
             }
         })
         .catch(error => {
@@ -46,12 +52,7 @@ let getAyahArabic = () => {
         .then(response => response.json())
         .then(data => {
             const translationText = data.data.text;
-            translation.innerHTML = `${translationText}`;   
-            // Hide the loading message and show the verse, translation, and play button
-            loadingText.style.display = "none";
-            verse.style.display = "block";
-            translation.style.display = "block";
-            verseNumber.style.display = "block"; 
+            translation.innerHTML = `${translationText}`;               
         })
         .catch(error => {
             console.log('Error:', error);
@@ -79,4 +80,14 @@ let getAyahArabic = () => {
 //calling functions 
 getAyahArabic();
 generateBtn.addEventListener('click', getAyahArabic);
-//set a timeout... work on it--- keeps refreshing need to work on it
+
+// Add event listener to the twitter button
+twitterBtn.addEventListener("click", () => {
+    let translationText = document.getElementById("translation").textContent;
+    // Create the Twitter share URL with the text as a parameter
+    let tweetText = `কুরআনের এই আয়াতটি দেখুন: \n${translationText}`;
+    let tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
+
+    // Open the Twitter compose window
+    window.open(tweetUrl, "_blank");
+});

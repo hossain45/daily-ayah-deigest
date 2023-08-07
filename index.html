@@ -7,32 +7,32 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@3.4.0/dist/full.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
     <link rel="shortcut icon" href="./assets/logo-quran.png" type="image/x-icon">
-<script src="https://cdn.tailwindcss.com"></script>
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap');
-    .font-family {
-        primaryFont: 'EB Garamond', serif;
-        secondaryFont: 'Poppins', sans-serif;
-    }
-</style>
-<script>
-    tailwind.config = {
-    theme: {
-        extend: {
-        colors: {
-        'mycolor': '#B68C5A',
-        },
-    fontFamily: {
-        'primaryFont': ['EB Garamond', 'serif'],
-        'secondaryFont': ['Poppins', 'sans-serif'],
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap');
+        .font-family {
+            primaryFont: 'EB Garamond', serif;
+            secondaryFont: 'Poppins', sans-serif;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+        theme: {
+            extend: {
+            colors: {
+            'mycolor': '#B68C5A',
+            },
+        fontFamily: {
+            'primaryFont': ['EB Garamond', 'serif'],
+            'secondaryFont': ['Poppins', 'sans-serif'],
+            },
         },
     },
-},
-}
-</script>
+    }
+    </script>
 </head>    
 <body class="flex items-center h-screen bg-gray-100">
-    <div class=" bg-white card w-2/3 shadow-xl  mx-auto">
+    <div id="card" class=" bg-white card w-2/3 shadow-xl  mx-auto">
         <div class="card-body flex flex-col justify-center items-center gap-2 text-center">
             <!-- texts -->
           <h2 id="verse" class="card-title">            
@@ -47,7 +47,7 @@
           <audio id="audioElement"></audio>
           <!-- buttons -->
           <div class="card-actions font-secondaryFont">
-            <button id="twitter-btn" class="btn btn-ghost text-blue-700 text-xl normal-case font-medium"><i class="fa-brands fa-twitter"></i> Twitter</button>
+            <button id="twitter-btn" class="btn btn-ghost text-blue-700 text-xl normal-case font-medium"><i class="fa-brands fa-twitter"></i> Tweet</button>
             <button id="generate-btn" type="button" class="btn btn-primary text-xl normal-case font-medium"><i class="fa-solid fa-shuffle"></i>Generate</button>
             <button id="play-btn" class="btn btn-ghost text-xl normal-case font-medium"><i class="fa-solid fa-play"></i>
                 Play
@@ -57,4 +57,4 @@
     </div>
     <script src="script.js"></script>
 </body>
-</html>
+</html>                                                         
