@@ -76,18 +76,28 @@ let getAyah = (chapter, pVerse) => {
         .catch(error => {
             console.log('Error:', error);
         });
-            
-        //next and previous button functions
-        let currentChapter = chapter;
-        let currentpVerse = pVerse;
-        let nextVerse = currentpVerse + 1;
-        let preVerse = currentpVerse - 1;
+        
+        // // next and previous buttons
+        // let preVerse = pVerse - 1;
+        // let preChapter = chapter - 1;
+        // let nextVerse = pVerse + 1;
+        // let nextChapter = chapter + 1;
+        // // console.log(preChapter);
+        // let nextAyah = () => {
+        //     let nextVerse = pVerse + 1;
+        //     console.log(nextVerse);
+        //     console.log(chapter);
+        //     getAyah(chapter, nextVerse);
+        // };
 
-        nextBtn.addEventListener('click', getAyah(currentChapter, nextVerse));
-        nextBtn.addEventListener('click', getAyah(currentChapter, preVerse));
+        // nextBtn.addEventListener('click', nextAyah);
+
+
 }
 
 //calling functions 
+
+
 // generating random verse
 function getVerse() {
     //getting random verse
