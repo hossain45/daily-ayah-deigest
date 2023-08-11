@@ -13,7 +13,8 @@ let searchBtn = document.getElementById("search-btn");
 let searchNumber = document.getElementById("search");
 
 // Fetch the data from the API and main function
-let getAyah = (randomChapter, randomVerse) => {
+// pVerse = parameter verse
+let getAyah = (chapter, pVerse) => {
     //hiding loading text
     verse.style.display = "none";
     translation.style.display = "none";
@@ -21,7 +22,7 @@ let getAyah = (randomChapter, randomVerse) => {
     loadingText.style.display = "block";
 
     //setting arabic text endpoints api
-    let arabicTextUrl = `https://api.alquran.cloud/v1/ayah/${randomChapter}:${randomVerse}`;
+    let arabicTextUrl = `https://api.alquran.cloud/v1/ayah/${chapter}:${pVerse}`;
 
     fetch(arabicTextUrl)
         .then(response => response.json())
@@ -35,7 +36,7 @@ let getAyah = (randomChapter, randomVerse) => {
                 verseNumber.style.display = "block"; 
                 
                 verse.innerHTML = `${verseText}`;
-                verseNumber.innerHTML = `Chapter ${randomChapter}, Verse ${randomVerse}` 
+                verseNumber.innerHTML = `Chapter ${chapter}, Verse ${pVerse}` 
             }           
              else {
                  setTimeout(getVerse, 100); // Adjust the delay as needed (e.g., 500ms)
@@ -46,7 +47,7 @@ let getAyah = (randomChapter, randomVerse) => {
         });
 
     //setting translation endpoints api
-    let translationUrl = `https://api.alquran.cloud/v1/ayah/${randomChapter}:${randomVerse}/bn.bengali`;
+    let translationUrl = `https://api.alquran.cloud/v1/ayah/${chapter}:${pVerse}/bn.bengali`;
 
     fetch(translationUrl)
         .then(response => response.json())
@@ -58,7 +59,7 @@ let getAyah = (randomChapter, randomVerse) => {
             console.log('Error:', error);
         });
     //setting audio endpoints api
-    let audioUrl = `https://api.alquran.cloud/v1/ayah/${randomChapter}:${randomVerse}/ar.alafasy`;
+    let audioUrl = `https://api.alquran.cloud/v1/ayah/${chapter}:${pVerse}/ar.alafasy`;
     //removing previous audio url
     audioElement.removeAttribute("src");
 
@@ -75,6 +76,15 @@ let getAyah = (randomChapter, randomVerse) => {
         .catch(error => {
             console.log('Error:', error);
         });
+            
+        //next and previous button functions
+        let currentChapter = chapter;
+        let currentpVerse = pVerse;
+        let nextVerse = currentpVerse + 1;
+        let preVerse = currentpVerse - 1;
+
+        nextBtn.addEventListener('click', getAyah(currentChapter, nextVerse));
+        nextBtn.addEventListener('click', getAyah(currentChapter, preVerse));
 }
 
 //calling functions 
@@ -121,3 +131,4 @@ twitterBtn.addEventListener("click", () => {
     // Open the Twitter compose window
     window.open(tweetUrl, "_blank");
 });
+
