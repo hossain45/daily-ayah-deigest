@@ -7,6 +7,14 @@ let audioElement = document.getElementById("audioElement");
 let twitterBtn = document.getElementById("twitter-btn");
 let generateBtn = document.getElementById("generate-btn");
 let playBtn = document.getElementById("play-btn");
+let nextBtn = document.getElementById("next-btn");
+let previousBtn = document.getElementById("previous-btn");
+let searchBtn = document.getElementById("search-btn");
+let searchNumber = document.getElementById("search");
+
+//verse location var declaration 
+let randomChapter = 0;
+let randomVerse = 0;
 
 // Fetch the data from the API
 let getAyahArabic = () => {
@@ -18,8 +26,8 @@ let getAyahArabic = () => {
 
     setTimeout(() => {
     //getting random verse
-    let randomChapter = Math.floor(Math.random() * 114) + 1;
-    let randomVerse = Math.floor(Math.random() * 286) + 1; // The highest verse count in any chapter is 286
+    randomChapter = Math.floor(Math.random() * 114) + 1;
+    randomVerse = Math.floor(Math.random() * 286) + 1; // The highest verse count in any chapter is 286
 
     //setting arabic text endpoints api
     let arabicTextUrl = `https://api.alquran.cloud/v1/ayah/${randomChapter}:${randomVerse}`;
