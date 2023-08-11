@@ -12,22 +12,13 @@ let previousBtn = document.getElementById("previous-btn");
 let searchBtn = document.getElementById("search-btn");
 let searchNumber = document.getElementById("search");
 
-//verse location var declaration 
-let randomChapter = 0;
-let randomVerse = 0;
-
-// Fetch the data from the API
-let getAyahArabic = () => {
+// Fetch the data from the API and main function
+let getAyah = (randomChapter, randomVerse) => {
     //hiding loading text
     verse.style.display = "none";
     translation.style.display = "none";
     verseNumber.style.display = "none";
     loadingText.style.display = "block";
-
-    setTimeout(() => {
-    //getting random verse
-    randomChapter = Math.floor(Math.random() * 114) + 1;
-    randomVerse = Math.floor(Math.random() * 286) + 1; // The highest verse count in any chapter is 286
 
     //setting arabic text endpoints api
     let arabicTextUrl = `https://api.alquran.cloud/v1/ayah/${randomChapter}:${randomVerse}`;
@@ -44,9 +35,10 @@ let getAyahArabic = () => {
                 verseNumber.style.display = "block"; 
                 
                 verse.innerHTML = `${verseText}`;
-                verseNumber.innerHTML = `Chapter ${randomChapter}, Verse ${randomVerse}`            
-            } else {
-                setTimeout(getAyahArabic, 100); // Adjust the delay as needed (e.g., 500ms)
+                verseNumber.innerHTML = `Chapter ${randomChapter}, Verse ${randomVerse}` 
+            }           
+             else {
+                 setTimeout(getVerse, 100); // Adjust the delay as needed (e.g., 500ms)
             }
         })
         .catch(error => {
@@ -83,11 +75,41 @@ let getAyahArabic = () => {
         .catch(error => {
             console.log('Error:', error);
         });
-    }, 500);
 }
+
 //calling functions 
-getAyahArabic();
-generateBtn.addEventListener('click', getAyahArabic);
+// generating random verse
+function getVerse() {
+    //getting random verse
+    let generateChapter = Math.floor(Math.random() * 114) + 1;
+    let generateVerse = Math.floor(Math.random() * 286) + 1; // The highest verse count in any chapter is 286
+    getAyah(generateChapter, generateVerse)
+};
+
+getVerse();
+
+// function for generate button 
+generateBtn.addEventListener('click', getVerse);
+
+//searching verses using search button
+searchBtn.addEventListener('click', (event) => {
+    event.preventDefault(); // Prevent form submission
+    let searchArray = searchNumber.value.split(":");
+    let searchChapter = searchArray[0];
+    let searchVerse = searchArray[1];
+
+    // input validation 
+    if (searchChapter && searchVerse) {
+        getAyah(searchChapter, searchVerse);
+        searchNumber.value = '';
+    } else {
+        // Display an error message or take appropriate action
+        alert("Please enter a valid search input.");
+    }
+});
+
+//accessing next verse 
+
 
 // Add event listener to the twitter button
 twitterBtn.addEventListener("click", () => {

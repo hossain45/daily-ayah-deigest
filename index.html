@@ -54,21 +54,23 @@
             </button>
           </div>  
           <!-- search bar -->          
-          <form class="flex justify-center items-center gap-2">   
+          <div class="flex justify-center items-center gap-2">   
             <!-- previous button              -->
-            <a href="" id="previous-btn" class="tooltip p-4 text-xl font-medium text-black bg-white border border-mycolor rounded-lg hover:bg-gray-100 hover:text-gray-700" data-tip="Previous verse">
+            <button type="submit" id="previous-btn" class="tooltip p-4 text-xl font-medium text-black bg-white border border-mycolor rounded-lg hover:bg-gray-100 hover:text-gray-700" data-tip="Previous verse">
               <i class="fa-solid fa-angle-left"></i>
-            </a>
+            </button>
             <!-- search bar -->
-            <div class="tooltip relative" data-tip="Search format - chapter number: verse number (e.g. 2:155)">                
-              <input type="search" id="search" class="block w-full p-4 text-xl text-gray-900 border border-mycolor rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500 " placeholder="Search" required>
-              <button type="submit" id="search-btn" class="text-black absolute right-2.5 bottom-2.5 bg-mycolor hover:bg-gray-200 hover:text-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-4 py-2 "><i class="fa-solid fa-magnifying-glass"></i></button>
-            </div>
+            <form>
+              <div class="tooltip relative" data-tip="Search format - chapter number: verse number (e.g. 2:155)">                
+                <input type="search" id="search" class="block w-full p-4 text-xl text-gray-900 border border-mycolor rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500 " placeholder="Search" required>
+                <button type="submit" id="search-btn" class="text-black absolute right-2.5 bottom-2.5 bg-mycolor hover:bg-gray-200 hover:text-gray-800 focus:outline-none  font-medium rounded-lg text-lg px-4 py-2 "><i class="fa-solid fa-magnifying-glass"></i></button>
+              </div>
+            </form>
             <!-- Next button  -->
-            <a href="" id="next-btn" class="tooltip p-4 text-xl font-medium text-black bg-white border border-mycolor rounded-lg hover:bg-gray-100 hover:text-gray-700 " data-tip="Next verse">
+            <button type="submit" id="next-btn" class="tooltip p-4 text-xl font-medium text-black bg-white border border-mycolor rounded-lg hover:bg-gray-100 hover:text-gray-700 " data-tip="Next verse">
               <i class="fa-solid fa-angle-right"></i>
-            </a>
-          </form>          
+            </button>
+          </div>          
           <!-- search bar ends -->          
         </div>
     </div>
