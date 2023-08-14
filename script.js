@@ -12,6 +12,10 @@ let previousBtn = document.getElementById("previous-btn");
 let searchBtn = document.getElementById("search-btn");
 let searchNumber = document.getElementById("search");
 
+//deeclaring global var for verse and chapter
+let pVerseGlobal;
+let chapterGlobal;
+
 // Fetch the data from the API and main function
 // pVerse = parameter verse
 let getAyah = (chapter, pVerse) => {
@@ -76,27 +80,9 @@ let getAyah = (chapter, pVerse) => {
         .catch(error => {
             console.log('Error:', error);
         });
-        
-        // // next and previous buttons
-        // let preVerse = pVerse - 1;
-        // let preChapter = chapter - 1;
-        // let nextVerse = pVerse + 1;
-        // let nextChapter = chapter + 1;
-        // // console.log(preChapter);
-        // let nextAyah = () => {
-        //     let nextVerse = pVerse + 1;
-        //     console.log(nextVerse);
-        //     console.log(chapter);
-        //     getAyah(chapter, nextVerse);
-        // };
-
-        // nextBtn.addEventListener('click', nextAyah);
-
-
 }
 
 //calling functions 
-
 
 // generating random verse
 function getVerse() {
@@ -104,6 +90,9 @@ function getVerse() {
     let generateChapter = Math.floor(Math.random() * 114) + 1;
     let generateVerse = Math.floor(Math.random() * 286) + 1; // The highest verse count in any chapter is 286
     getAyah(generateChapter, generateVerse)
+    //updating global variables
+    pVerseGlobal = generateVerse;
+    chapterGlobal = generateChapter;
 };
 
 getVerse();
@@ -121,6 +110,9 @@ searchBtn.addEventListener('click', (event) => {
     // input validation 
     if (searchChapter && searchVerse) {
         getAyah(searchChapter, searchVerse);
+        //updating global variables
+        pVerseGlobal = parseInt(searchVerse)
+        chapterGlobal = searchChapter
         searchNumber.value = '';
     } else {
         // Display an error message or take appropriate action
@@ -128,8 +120,21 @@ searchBtn.addEventListener('click', (event) => {
     }
 });
 
-//accessing next verse 
+//accessing next verse
+let nextAyah = () => {
+    let nextVerse = pVerseGlobal + 1;
+    getAyah(chapterGlobal, nextVerse);
+    pVerseGlobal++;
+};
+nextBtn.addEventListener('click', nextAyah); 
 
+//accessing previous verse
+let previousAyah = () => {
+    let previousVerse = pVerseGlobal - 1;
+    getAyah(chapterGlobal, previousVerse);
+    pVerseGlobal--;
+};
+previousBtn.addEventListener('click', previousAyah); 
 
 // Add event listener to the twitter button
 twitterBtn.addEventListener("click", () => {
@@ -141,4 +146,3 @@ twitterBtn.addEventListener("click", () => {
     // Open the Twitter compose window
     window.open(tweetUrl, "_blank");
 });
-
